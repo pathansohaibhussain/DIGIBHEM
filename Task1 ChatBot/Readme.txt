@@ -1,2 +1,5 @@
-* Please Open the Link in Your Laptop or Pc.
-* If you are using the Mobile, Open the Link in *Desktop Site*
+> IF YOU WANT TO OPEN A CHATBOT, VISIT https://bot.dialogflow.com/474f32a6-cd4c-4c93-a99f-e93d95f74f95
+>* NOTE: IF YOU ARE OPENING THE LINK IN MOBILE, MAKE SURE TO TURN ON "DESKTOP SITE".
+
+ANOTHER METHOD
+> COPY THE HTML CODE AND CREATE A HTML FILE AND PASTE THE CODE THERE. AND RUN THE HTML FILE.
