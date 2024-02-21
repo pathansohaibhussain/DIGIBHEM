@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Course</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Your custom CSS file -->
+    <style>
+       
+        body {
+            background-image: url('https://source.unsplash.com/random');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height to cover the viewport */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-primary, .btn-success, .btn-danger {
+            width: 150px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .course-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .course-details input[type="text"], .course-details textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .course-details input[type="text"]:focus, .course-details textarea:focus {
+            border-color: #007bff;
+        }
+
+        .course-materials {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .course-materials li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .course-materials li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-add-material {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Course</h2>
+        <div class="row">
+            <div class="col-md-6 course-section">
+                <h3>Course Details</h3>
+                <div class="course-details">
+                    <p><strong>Course Title:</strong> <span id="courseTitle">Introduction to Web Development</span></p>
+                    <p><strong>Description:</strong> <span id="courseDescription">This course covers the basics of web development...</span></p>
+                    <p><strong>Category:</strong> <span id="courseCategory">Web Development</span></p>
+                    <p><strong>Duration:</strong> <span id="courseDuration">12 weeks</span></p>
+                    <button class="btn btn-primary" onclick="editCourseDetails()">Edit Course Details</button>
+                    <button class="btn btn-success" onclick="saveCourseDetails()" style="display: none;">Save Changes</button>
+                </div>
+            </div>
+            <div class="col-md-6 course-section">
+                <h3>Course Materials</h3>
+                <ul id="courseMaterials" class="course-materials">
+                    <li>Module 1: HTML Basics <button class="btn btn-danger btn-sm" onclick="removeCourseMaterial(this)">Remove</button></li>
+                    <li>Module 2: CSS Styling <button class="btn btn-danger btn-sm" onclick="removeCourseMaterial(this)">Remove</button></li>
+                    <li>Module 3: JavaScript Fundamentals <button class="btn btn-danger btn-sm" onclick="removeCourseMaterial(this)">Remove</button></li>
+                </ul>
+                <button class="btn btn-primary btn-add-material" onclick="addCourseMaterial()">Add Course Material</button>
+            </div>
+        </div>
+        <button class="btn btn-secondary back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left mr-2"></i> Back
+        </button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function editCourseDetails() {
+            // Hide paragraph elements and display input fields for editing
+            document.getElementById("courseTitle").innerHTML = '<input type="text" id="courseTitleInput" value="' + document.getElementById("courseTitle").innerText + '">';
+            document.getElementById("courseDescription").innerHTML = '<textarea id="courseDescriptionInput">' + document.getElementById("courseDescription").innerText + '</textarea>';
+            document.getElementById("courseCategory").innerHTML = '<input type="text" id="courseCategoryInput" value="' + document.getElementById("courseCategory").innerText + '">';
+            document.getElementById("courseDuration").innerHTML = '<input type="text" id="courseDurationInput" value="' + document.getElementById("courseDuration").innerText + '">';
+            // Show the save button
+            document.querySelector(".btn-success").style.display = "inline-block";
+            // Hide the edit button
+            document.querySelector(".btn-primary").style.display = "none";
+        }
+
+        function saveCourseDetails() {
+            // Get values from input fields and update the corresponding paragraphs
+            document.getElementById("courseTitle").innerHTML = document.getElementById("courseTitleInput").value;
+            document.getElementById("courseDescription").innerHTML = document.getElementById("courseDescriptionInput").value;
+            document.getElementById("courseCategory").innerHTML = document.getElementById("courseCategoryInput").value;
+            document.getElementById("courseDuration").innerHTML = document.getElementById("courseDurationInput").value;
+            // Hide the save button
+            document.querySelector(".btn-success").style.display = "none";
+            // Show the edit button
+            document.querySelector(".btn-primary").style.display = "inline-block";
+        }
+
+        function addCourseMaterial() {
+            var newMaterial = prompt("Enter the name of the new course material:");
+            if (newMaterial) {
+                var courseMaterials = document.getElementById("courseMaterials");
+                var newItem = document.createElement("li");
+                newItem.textContent = newMaterial;
+                var removeBtn = document.createElement("button");
+                removeBtn.className = "btn btn-danger btn-sm";
+                removeBtn.textContent = "Remove";
+                removeBtn.onclick = function() {
+                    removeCourseMaterial(this);
+                };
+                newItem.appendChild(removeBtn);
+                courseMaterials.appendChild(newItem);
+            }
+        }
+
+        function removeCourseMaterial(btn) {
+            var listItem = btn.parentNode;
+            listItem.parentNode.removeChild(listItem);
+        }
+    </script>
+</body>
+</html>

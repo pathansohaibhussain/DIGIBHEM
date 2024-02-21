@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Content</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Your custom CSS file -->
+    <style>
+       body{
+            background-image: url('https://source.unsplash.com/random');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height to cover the viewport */
+            
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        #errorFileType {
+            margin-top: 10px;
+            display: none;
+        }
+
+        #uploadStatus {
+            margin-top: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Content</h2>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="contentType">Select Content Type:</label>
+                <select class="form-control" id="contentType">
+                    <option value="lecture">Lecture</option>
+                    <option value="video">Video</option>
+                    <option value="document">Document</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="contentFile">Upload File:</label>
+                <input type="file" class="form-control-file" id="contentFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.mp4">
+            </div>
+            <div id="errorFileType" class="alert alert-danger" style="display: none;">Selected file type does not match the chosen content type.</div>
+            <button type="button" class="btn btn-primary" onclick="uploadContent()">Upload</button>
+        </form>
+
+        <div id="uploadStatus" class="mt-4" style="display: none;">
+            <h3>Upload Status</h3>
+            <p id="uploadMessage"></p>
+        </div>
+
+        <button class="btn btn-secondary mt-3" onclick="goBack()">
+            <i class="fas fa-arrow-left mr-2"></i> Back
+        </button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function uploadContent() {
+            var contentType = document.getElementById("contentType").value;
+            var contentFile = document.getElementById("contentFile").files[0];
+            var allowedExtensions = {
+                lecture: [".pdf", ".ppt", ".pptx"],
+                video: [".mp4"],
+                document: [".pdf", ".doc", ".docx", ".ppt", ".pptx"]
+            };
+
+            // Perform file type validation
+            var fileExtension = contentFile.name.split(".").pop();
+            if (!allowedExtensions[contentType].includes("." + fileExtension)) {
+                document.getElementById("errorFileType").style.display = "block";
+                return;
+            } else {
+                document.getElementById("errorFileType").style.display = "none";
+            }
+
+            // Perform upload process
+            setTimeout(function() {
+                // Display upload status
+                document.getElementById("uploadStatus").style.display = "block";
+                document.getElementById("uploadMessage").innerText = "Content uploaded successfully.";
+
+                // Reset form after upload
+                document.getElementById("uploadForm").reset();
+            }, 2000); // Simulate 2 seconds delay
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

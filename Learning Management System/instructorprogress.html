@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Progress</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Your custom CSS file -->
+    <style>
+        body{
+            background-image: url('https://source.unsplash.com/random');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height to cover the viewport */
+            
+        }
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            border-radius: 20px;
+            font-size: 14px;
+            text-align: center;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+            border-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Instructor Progress</h2>
+
+        <div class="progress-container">
+            <h4 class="progress-label">Quiz Progress</h4>
+            <div class="progress">
+                <div id="quizProgress" class="progress-bar bg-success" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <h4 class="progress-label">Assignment Progress</h4>
+            <div class="progress">
+                <div id="assignmentProgress" class="progress-bar bg-info" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <h4 class="progress-label">Overall Progress</h4>
+            <div class="progress">
+                <div id="overallProgress" class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary mt-3" onclick="generateProgress()">Generate Progress</button>
+
+        <button class="btn btn-secondary mt-3" onclick="goBack()">
+            <i class="fas fa-arrow-left mr-2"></i> Back
+        </button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function generateProgress() {
+            var quizProgress = Math.floor(Math.random() * 101); // Generate random progress for quizzes
+            var assignmentProgress = Math.floor(Math.random() * 101); // Generate random progress for assignments
+            var overallProgress = (quizProgress + assignmentProgress) / 2; // Calculate overall progress
+
+            document.getElementById("quizProgress").style.width = quizProgress + "%";
+            document.getElementById("quizProgress").setAttribute("aria-valuenow", quizProgress);
+            document.getElementById("quizProgress").innerText = quizProgress + "%";
+
+            document.getElementById("assignmentProgress").style.width = assignmentProgress + "%";
+            document.getElementById("assignmentProgress").setAttribute("aria-valuenow", assignmentProgress);
+            document.getElementById("assignmentProgress").innerText = assignmentProgress + "%";
+
+            document.getElementById("overallProgress").style.width = overallProgress + "%";
+            document.getElementById("overallProgress").setAttribute("aria-valuenow", overallProgress);
+            document.getElementById("overallProgress").innerText = overallProgress.toFixed(2) + "%";
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

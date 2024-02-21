@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include your custom CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js library for visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Reports</h2>
+        <!-- Your report functionalities go here -->
+
+        <!-- Visualization section -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-4">Student Performance</h4>
+                        <canvas id="studentPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-4">Grade Distribution</h4>
+                        <canvas id="gradeDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="goBack()">
+                <i class="fas fa-arrow-left mr-2"></i> Back
+            </button>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Sample data for visualization
+        const studentData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Average Grade',
+                data: [80, 85, 90, 88, 92, 85], // Example data, replace with actual data
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const gradeDistributionData = {
+            labels: ['A', 'B', 'C', 'D', 'F'],
+            datasets: [{
+                label: 'Grade Distribution',
+                data: [30, 25, 20, 15, 10], // Example data, replace with actual data
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 205, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Draw student performance chart
+        const studentCtx = document.getElementById('studentPerformanceChart').getContext('2d');
+        const studentChart = new Chart(studentCtx, {
+            type: 'line',
+            data: studentData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Draw grade distribution pie chart
+        const gradeDistributionCtx = document.getElementById('gradeDistributionChart').getContext('2d');
+        const gradeDistributionChart = new Chart(gradeDistributionCtx, {
+            type: 'pie',
+            data: gradeDistributionData,
+        });
+
+        // Function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

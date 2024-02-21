@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Custom CSS for visualization -->
+    <style>
+        .container {
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px; /* Adjust container width */
+            margin: auto;
+            margin-top: 100px; /* Center the container vertically */
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .registration-link {
+            text-align: center;
+        }
+
+        .registration-link a {
+            color: #007bff;
+        }
+
+        .registration-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        /* Background styles */
+        body {
+            background-image: url('https://source.unsplash.com/random');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height to cover the viewport */
+           
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="userType">Select User Type:</label>
+                <select class="form-control" id="userType" required>
+                    <option value="" disabled>Select User Type</option>
+                    <option value="student">Student</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="administrator">Administrator</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+            </div>
+            <div class="error-message" id="errorMessage"></div>
+            <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+        </form>
+        <div class="registration-link mt-3">
+            <p>New User? <a href="registration.html">Register Here</a></p>
+        </div>
+    </div>
+    <script>
+        function login() {
+            var userType = document.getElementById("userType").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (!userType || !email || !password) {
+                document.getElementById("errorMessage").innerText = "All fields are required.";
+                return;
+            }
+
+            // Add your login logic here
+            if (userType === "instructor") {
+                window.location.href = "instructor.html";
+            } else if (userType === "student") {
+                window.location.href = "student.html";
+            } else if (userType === "administrator") {
+                window.location.href = "administrator.html";
+            }
+        }
+    </script>
+</body>
+</html>

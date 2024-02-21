@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Custom CSS styles -->
+    <style>
+         body{
+            background-image: url('https://source.unsplash.com/random');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height to cover the viewport */
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Quiz</h2>
+
+        <form id="quizForm">
+            <!-- Quiz questions -->
+            <div class="quiz-question">
+                <h5>Question 1: What is the tallest mountain in the world?</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1a" value="a">
+                    <label class="form-check-label" for="q1a">a) Mount Everest</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1b" value="b">
+                    <label class="form-check-label" for="q1b">b) Mount Kilimanjaro</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h5>Question 2: Who wrote the play "Romeo and Juliet"?</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2a" value="a">
+                    <label class="form-check-label" for="q2a">a) William Shakespeare</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2b" value="b">
+                    <label class="form-check-label" for="q2b">b) Jane Austen</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h5>Question 3: What is the chemical symbol for water?</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3a" value="a">
+                    <label class="form-check-label" for="q3a">a) Wa</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3b" value="b">
+                    <label class="form-check-label" for="q3b">b) H2O</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h5>Question 4: Which planet is known as the "Red Planet"?</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4a" value="a">
+                    <label class="form-check-label" for="q4a">a) Venus</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4b" value="b">
+                    <label class="form-check-label" for="q4b">b) Mars</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h5>Question 5: What is the main ingredient in guacamole?</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5a" value="a">
+                    <label class="form-check-label" for="q5a">a) Avocado</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5b" value="b">
+                    <label class="form-check-label" for="q5b">b) Tomato</label>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="button" class="btn btn-primary mt-3 btn-block" onclick="submitQuiz()">Submit Quiz</button>
+        </form>
+
+        <!-- Quiz results section (hidden by default) -->
+        <div id="quizResults" class="mt-4" style="display: none;">
+            <h3 class="text-center mb-3">Quiz Results</h3>
+            <div id="correctAnswers" class="text-success"></div>
+            <div id="incorrectAnswers" class="text-danger"></div>
+            <div id="totalMarks" class="mt-3"></div>
+        </div>
+    </div>
+    <button class="btn btn-secondary back-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left mr-2"></i> Back
+    </button>
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom script for quiz functionality -->
+    <script src="script.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function submitQuiz() {
+            var form = document.getElementById("quizForm");
+            var answers = form.elements;
+            var correctCount = 0;
+            var totalQuestions = 5; // Total number of questions
+
+            // Check answers for each question
+            if (answers.q1.value === "a") {
+                correctCount++;
+            }
+            // Add similar checks for other questions
+
+            // Calculate incorrect count and total marks
+            var incorrectCount = totalQuestions - correctCount;
+            var totalMarks = correctCount * 1; // 1 mark per correct answer
+
+            // Display quiz results
+            var quizResultsDiv = document.getElementById("quizResults");
+            quizResultsDiv.style.display = "block";
+            document.getElementById("correctAnswers").innerHTML = "Correct Answers: " + correctCount;
+            document.getElementById("incorrectAnswers").innerHTML = "Incorrect Answers: " + incorrectCount;
+            document.getElementById("totalMarks").innerHTML = "Total Marks: " + totalMarks;
+        }
+    </script>
+</body>
+</html>

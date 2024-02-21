@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Your custom CSS file -->
+
+    <!-- Custom CSS for visualization -->
+    <style>
+         body{
+            background-image: url('https://source.unsplash.com/random');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height to cover the viewport */
+            
+        }
+         .card {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        #submissionMessage {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 123, 255, 0.8);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Assignments</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Assignment 1</h5>
+                        <p class="card-text">Write a program in C++ to implement a linked list and perform basic operations like insertion, deletion, and traversal.</p>
+                        <button class="btn btn-primary" onclick="submitAssignment(1)">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Assignment 2</h5>
+                        <p class="card-text">Design a database schema for a social media platform using MySQL or any other relational database management system.</p>
+                        <button class="btn btn-primary" onclick="submitAssignment(2)">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Assignment 3</h5>
+                        <p class="card-text">Implement a basic algorithm for sorting a list of integers using the bubble sort technique in Java.</p>
+                        <button class="btn btn-primary" onclick="submitAssignment(3)">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Assignment 4</h5>
+                        <p class="card-text">Develop a simple web application using HTML, CSS, and JavaScript to create a todo list with add, delete, and edit functionalities.</p>
+                        <button class="btn btn-primary" onclick="submitAssignment(4)">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Assignment 5</h5>
+                        <p class="card-text">Write a report on the impact of artificial intelligence on various industries and its future prospects.</p>
+                        <button class="btn btn-primary" onclick="submitAssignment(5)">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary back-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left mr-2"></i> Back
+    </button>
+    <div id="submissionMessage" class="mt-4 text-center">
+        Assignment <span id="submittedAssignmentNumber"></span> submitted successfully!
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function submitAssignment(assignmentNumber) {
+            document.getElementById("submittedAssignmentNumber").innerText = assignmentNumber;
+            document.getElementById("submissionMessage").style.display = "block";
+        }
+        function submitAssignment(assignmentNumber) {
+            document.getElementById("submittedAssignmentNumber").innerText = assignmentNumber;
+            document.getElementById("submissionMessage").style.display = "block";
+            setTimeout(function() {
+                document.getElementById("submissionMessage").style.display = "none";
+            }, 2000); // Set the timeout to 2 seconds (2000 milliseconds)
+        }
+    </script>
+</body>
+</html>

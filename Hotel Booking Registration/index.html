@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background {
+            background-image: url('bg1.jpg'); /* Replace 'path_to_your_hotel_image.jpg' with the path to your hotel background image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-height: calc(100vh - 60px); /* Subtracting header and footer heights */
+            overflow-y: auto; /* Adding vertical scrollbar when needed */
+            animation: fadeIn 1s ease; /* Adding fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333; /* Changing title color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adding text shadow */
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #007bff;
+            text-transform: uppercase; /* Making section titles uppercase */
+            letter-spacing: 1px; /* Adding letter spacing */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555; /* Changing label color */
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        button {
+            width: calc(100% - 20px);
+            max-width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            transition: background-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        button:focus {
+            outline: none;
+            background-color: #e0e0e0;
+        }
+
+        input[type="checkbox"] {
+            display: none; /* Hiding default checkbox */
+        }
+
+        .checkbox-custom {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .checkbox-custom input {
+            display: none;
+        }
+
+        .checkbox-custom label:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .checkbox-custom input:checked + label:before {
+            background-color: #007bff;
+        }
+
+        .checkbox-custom label:after {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 16px;
+            color: #fff;
+            position: absolute;
+            top: 2px;
+            left: 3px;
+            display: none;
+        }
+
+        .checkbox-custom input:checked + label:after {
+            display: block;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <h1>Hotel Booking Registration</h1>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <h2>Customer Info</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="customerName">Name *</label>
+                            <input type="text" id="customerName" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="checkInDate">Check-in Date *</label>
+                            <input type="date" id="checkInDate" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="totalDays">Total Days *</label>
+                            <input type="number" id="totalDays" class="form-control" min="1" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="totalPersons">Total Persons *</label>
+                            <input type="number" id="totalPersons" class="form-control" min="1" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h2>Room Info</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="roomType">Room Type</label>
+                            <select id="roomType" class="form-control">
+                                <option value="deluxe">Deluxe</option>
+                                <option value="suite">Suite</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Amenities</label><br>
+                            <div class="checkbox-custom">
+                                <input type="checkbox" id="ac">
+                                <label for="ac"></label> AC
+                            </div>
+                            <div class="checkbox-custom">
+                                <input type="checkbox" id="locker">
+                                <label for="locker"></label> Locker
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h2>Room Rates</h2>
+                    <label for="roomRate">Room Rate (per day)</label>
+                    <input type="number" id="roomRate" class="form-control" value="1000" disabled>
+                    <label for="amenitiesCost">Amenities Cost (per day)</label>
+                    <input type="number" id="amenitiesCost" class="form-control" value="500" disabled>
+                </div>
+
+                <div class="form-group">
+                    <h2>Payment and Balance</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="advanceAmount">Advance Amount</label>
+                            <input type="number" id="advanceAmount" class="form-control" min="0">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="totalCost">Total Cost</label>
+                            <input type="number" id="totalCost" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="extraPerson">Extra Person Charges (per day)</label>
+                            <input type="number" id="extraPerson" class="form-control" value="1000" disabled>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="balance">Balance</label>
+                            <input type="number" id="balance" class="form-control" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

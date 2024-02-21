@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS for styling -->
+    <style>
+      body{
+            background-image: url('https://source.unsplash.com/random');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Adjust the height to cover the viewport */
+            
+        }
+
+        .container {
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            color: #007bff;
+        }
+
+        .card-text {
+            color: #6c757d;
+        }
+
+        .grade-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Progress Tracking</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Quiz Progress</h5>
+                        <p class="card-text">View your progress in quizzes.</p>
+                        <a href="#" class="btn btn-primary" onclick="showGrade('Quiz'); return false;">View Progress</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Assignment Progress</h5>
+                        <p class="card-text">View your progress in assignments.</p>
+                        <a href="#" class="btn btn-primary" onclick="showGrade('Assignment'); return false;">View Progress</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Overall Progress</h5>
+                        <p class="card-text">View your overall progress in the course.</p>
+                        <a href="#" class="btn btn-primary" onclick="showGrade('Overall'); return false;">View Progress</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary back-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left mr-2"></i> Back
+    </button>
+
+    <div id="gradeBox" class="grade-box"></div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function showGrade(progressType) {
+            var grades = ['A', 'A+', 'B', 'B+']; // Random grades
+            var randomGrade = grades[Math.floor(Math.random() * grades.length)];
+            var gradeBox = document.getElementById('gradeBox');
+            gradeBox.textContent = 'Your Grade In ' + progressType + ': ' + randomGrade;
+            gradeBox.style.display = 'block';
+            setTimeout(function() {
+                gradeBox.style.display = 'none';
+            }, 2000); // Hide the grade box after 2 seconds
+        }
+    </script>
+</body>
+</html>
