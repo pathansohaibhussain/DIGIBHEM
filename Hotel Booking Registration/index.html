@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-       body {
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
         }
 
         .background {
-            background-image: url('bg1.jpg'); /* Replace 'path_to_your_hotel_image.jpg' with the path to your hotel background image */
+            background-image: url('bg1.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -30,9 +30,9 @@
             border-radius: 20px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-height: calc(100vh - 60px); /* Subtracting header and footer heights */
-            overflow-y: auto; /* Adding vertical scrollbar when needed */
-            animation: fadeIn 1s ease; /* Adding fade-in animation */
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+            animation: fadeIn 1s ease;
         }
 
         @keyframes fadeIn {
@@ -46,8 +46,8 @@
 
         h1 {
             margin-bottom: 30px;
-            color: #333; /* Changing title color */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adding text shadow */
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         h2 {
@@ -55,8 +55,8 @@
             margin-bottom: 20px;
             font-size: 1.5em;
             color: #007bff;
-            text-transform: uppercase; /* Making section titles uppercase */
-            letter-spacing: 1px; /* Adding letter spacing */
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .form-group {
@@ -66,7 +66,7 @@
 
         label {
             font-weight: bold;
-            color: #555; /* Changing label color */
+            color: #555;
         }
 
         input[type="text"],
@@ -95,7 +95,7 @@
         }
 
         input[type="checkbox"] {
-            display: none; /* Hiding default checkbox */
+            display: none;
         }
 
         .checkbox-custom {
@@ -243,9 +243,40 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var formSubmitted = false; // Track if form is already submitted
+            
+            $('#bookingForm').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                if (!formSubmitted) {
+                    // Perform calculations
+                    calculateCost();
+                    
+                    // Set form submitted to true
+                    formSubmitted = true;
+                } else {
+                    // Show success message
+                    alert('Successfully Booked');
+                }
+            });
+        });
+        
+        function calculateCost() {
+            // Perform your calculations here
+            
+            // For demonstration purposes, I'm just setting the total cost and balance to some random values
+            var totalCost = 2000; // Example value
+            var balance = 500; // Example value
+            
+            // Update input fields with calculated values
+            $('#totalCost').val(totalCost);
+            $('#balance').val(balance);
+        }
+    </script>
 </body>
 </html>
